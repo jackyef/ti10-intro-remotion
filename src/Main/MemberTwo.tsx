@@ -54,7 +54,7 @@ export const One = () => {
 					textTransform: 'uppercase',
 					fontSize: '400px',
 					whiteSpace: 'nowrap',
-					transform: `translateX(${nameTranslate * 400}px)`,
+					transform: `translateX(${nameTranslate * -400}px)`,
 				}}
 			>
 				<p
@@ -83,7 +83,7 @@ export const One = () => {
 					bottom: 0,
 					right: 0,
 					filter: 'grayscale(100%) drop-shadow(100px 100px 400px black)',
-					transform: `translateX(${pictureTranslate * 300}px)`,
+					transform: `translateX(${pictureTranslate * -300}px)`,
 				}}
 				src={picture}
 				height={1080}
@@ -242,7 +242,7 @@ export const Three = () => {
 						textTransform: 'uppercase',
 						fontSize: '150px',
 						opacity: nameFade,
-            transform: `scale(${textScale}) translateX(${nameTranslate * 200}px)`,
+            transform: `scale(${textScale}) translateX(${nameTranslate * 700}px)`,
 					}}
 				>
 					<p

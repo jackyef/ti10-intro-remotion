@@ -35,13 +35,13 @@ export const Main = () => {
 					<MemberTwo.Two />
 				</AbsoluteFill>
 			</Sequence>
-			<Sequence from={256} durationInFrames={116}>
+			<Sequence from={256} durationInFrames={108}>
 				<AbsoluteFill>
 					<MemberTwo.Three />
 				</AbsoluteFill>
 			</Sequence>
 
-			<Sequence from={372} durationInFrames={32}>
+			<Sequence from={364} durationInFrames={40}>
 				<AbsoluteFill>
 					<MemberThree.One />
 				</AbsoluteFill>
@@ -89,7 +89,7 @@ export const Main = () => {
 				</AbsoluteFill>
 			</Sequence>
 
-			<Sequence from={938} durationInFrames={400}>
+			<Sequence from={938} durationInFrames={400 }>
 				<AbsoluteFill>
 					<GroupShot />
 				</AbsoluteFill>
