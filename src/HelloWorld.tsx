@@ -9,6 +9,7 @@ import {
 import {Logo} from './HelloWorld/Logo';
 import {Subtitle} from './HelloWorld/Subtitle';
 import {Title} from './HelloWorld/Title';
+import { Main } from './Main';
 
 export const HelloWorld: React.FC<{
 	titleText: string;
@@ -60,6 +61,7 @@ export const HelloWorld: React.FC<{
 					<Subtitle />
 				</Sequence>
 			</AbsoluteFill>
+			<Main />
 		</AbsoluteFill>
 	);
 };

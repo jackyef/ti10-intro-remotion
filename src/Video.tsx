@@ -1,6 +1,9 @@
 import {Composition} from 'remotion';
-import {HelloWorld} from './HelloWorld';
-import {Logo} from './HelloWorld/Logo';
+import {Main} from './Main';
+
+const VIDEO_DURATION = 21; // Seconds
+const FPS = 60;
+const VIDEO_DURATION_IN_FRAMES = VIDEO_DURATION * FPS;
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -8,27 +11,10 @@ export const RemotionVideo: React.FC = () => {
 	return (
 		<>
 			<Composition
-				// You can take the "id" to render a video:
-				// npx remotion render src/index.tsx <id> out/video.mp4
-				id="HelloWorld"
-				component={HelloWorld}
-				durationInFrames={150}
-				fps={30}
-				width={1920}
-				height={1080}
-				// You can override these props for each render:
-				// https://www.remotion.dev/docs/parametrized-rendering
-				defaultProps={{
-					titleText: 'Welcome to Remotion',
-					titleColor: 'black',
-				}}
-			/>
-			{/* Mount any React component to make it show up in the sidebar and work on it individually! */}
-			<Composition
-				id="OnlyLogo"
-				component={Logo}
-				durationInFrames={150}
-				fps={30}
+				id="main"
+				component={Main}
+				durationInFrames={VIDEO_DURATION_IN_FRAMES}
+				fps={FPS}
 				width={1920}
 				height={1080}
 			/>
