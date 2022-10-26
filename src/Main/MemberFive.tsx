@@ -1,12 +1,12 @@
 import {
 	Img,
+	interpolate,
 	spring,
 	staticFile,
 	useCurrentFrame,
 	useVideoConfig,
 } from 'remotion';
 import {TI_BLUE} from '../constants/colors';
-
 
 const [firstName, lastName] = 'Member Five'.split(' ');
 const nickname = 'Five';
@@ -17,6 +17,10 @@ export const One = () => {
 
 	const picture = staticFile('members/1/1.png');
 
+	const nameInterpolation = Math.floor(interpolate(frame, [0, 10], [0, 1]));
+	const nameColorInterpolation = Math.floor(
+		interpolate(frame, [0, 20], [0, 1])
+	);
 	const nameTranslate = spring({
 		fps: videoConfig.fps,
 		frame,
@@ -28,27 +32,42 @@ export const One = () => {
 		to: 0,
 	});
 
-	const pictureTranslate = spring({
+	const pictureScale = spring({
 		fps: videoConfig.fps,
 		frame,
 		config: {
-			damping: 200,
+			damping: 1000,
 			stiffness: 400,
 		},
-		from: 0.3,
-		to: 0,
+		from: 1.5,
+		to: 1,
 	});
 
 	return (
 		<div
 			style={{
 				height: '100%',
-				background: TI_BLUE,
+				background: nameColorInterpolation < 1 ? 'white' : TI_BLUE,
 			}}
 		>
+			<Img
+				style={{
+					opacity: nameInterpolation,
+					position: 'absolute',
+					bottom: 0,
+					left: 100,
+					filter: 'grayscale(100%) drop-shadow(100px 100px 400px black)',
+					transform: `scale(${pictureScale})`,
+				}}
+				src={picture}
+				height={1080}
+				width={1080}
+			/>
+
 			<div
 				style={{
-					color: 'white',
+					color: nameColorInterpolation === 1 ? 'white' : TI_BLUE,
+					opacity: 0.8,
 					fontFamily: 'Arial',
 					textShadow: '50px 50px 50px 400px',
 					fontWeight: 800,
@@ -65,31 +84,18 @@ export const One = () => {
 						left: 100,
 					}}
 				>
-					{`${firstName} `.repeat(3)}
+					{`${firstName} ${lastName} `.repeat(5)}
 				</p>
 				<p
 					style={{
 						position: 'absolute',
 						top: 100,
-						left: 100,
+						left: -1000,
 					}}
 				>
-					{`${lastName} `.repeat(3)}
+					{`${firstName} ${lastName} `.repeat(5)}
 				</p>
 			</div>
-
-			<Img
-				style={{
-					position: 'absolute',
-					bottom: 0,
-					right: 0,
-					filter: 'grayscale(100%) drop-shadow(100px 100px 400px black)',
-					transform: `translateX(${pictureTranslate * 300}px)`,
-				}}
-				src={picture}
-				height={1080}
-				width={1080}
-			/>
 		</div>
 	);
 };
@@ -183,67 +189,50 @@ export const Three = () => {
 
 	const picture = staticFile('members/1/1.png');
 
-	const nameFade = spring({
-		fps: videoConfig.fps,
-		frame,
-		config: {
-			damping: 400,
-		},
-		from: 0.3,
-		to: 1,
-	});
-
 	const nameTranslate = spring({
 		fps: videoConfig.fps,
 		frame,
+		durationInFrames: 100,
 		config: {
-			damping: 400,
+			damping: 4000,
+			stiffness: 200,
 		},
 		from: 0.3,
 		to: 0,
 	});
 
-	const pictureScale = spring({
+	const pictureTranslate = spring({
 		fps: videoConfig.fps,
 		frame,
-    durationInFrames: 100,
+		durationInFrames: 100,
 		config: {
 			damping: 2000,
 			stiffness: 400,
 		},
-		from: 3,
-		to: 1,
+		from: 0.7,
+		to: 0,
 	});
 
-  const textScale = spring({
-    fps: videoConfig.fps,
-		frame,
-    durationInFrames: 100,
-		config: {
-			damping: 2000,
-			stiffness: 100,
-		},
-		from: 1.5,
-		to: 1,
-  })
+	const shouldShowOverlay = !Math.floor(interpolate(frame, [0, 4], [0, 1]));
 
 	return (
-		<div
-			style={{
-				height: '100%',
-				background: `linear-gradient(165deg, rgba(0,0,0,1) 0%, rgba(57,57,57,1) 36%, rgba(62,62,62,1) 72%, rgba(0,0,0,1) 100%)`,
-			}}
-		>
+		<>
+			<div
+				style={{
+					height: '100%',
+					background: `linear-gradient(165deg, rgba(0,0,0,1) 0%, rgba(57,57,57,1) 36%, rgba(62,62,62,1) 72%, rgba(0,0,0,1) 100%)`,
+				}}
+			>
 				<div
 					style={{
+						display: shouldShowOverlay ? 'none' : 'block',
 						color: TI_BLUE,
 						fontFamily: 'Arial',
 						textShadow: '50px 50px 50px 400px',
 						fontWeight: 800,
 						textTransform: 'uppercase',
 						fontSize: '150px',
-						opacity: nameFade,
-            transform: `scale(${textScale}) translateX(${nameTranslate * 200}px)`,
+						transform: `translateX(${nameTranslate * 200}px)`,
 					}}
 				>
 					<p
@@ -273,12 +262,25 @@ export const Three = () => {
 						bottom: 0,
 						right: 0,
 						filter: 'grayscale(100%) drop-shadow(100px 100px 400px black)',
-            transform: `scale(${pictureScale})`,
+						transform: `translateX(${pictureTranslate * -800}px)`,
 					}}
 					src={picture}
 					height={1080}
 					width={1080}
 				/>
 			</div>
+
+			{shouldShowOverlay && (
+				<div
+					style={{
+						position: 'absolute',
+						inset: 0,
+						height: '100%',
+						background: TI_BLUE,
+						opacity: 0.8,
+					}}
+				/>
+			)}
+		</>
 	);
 };
