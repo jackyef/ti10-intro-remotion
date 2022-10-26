@@ -1,40 +1,30 @@
 # Remotion video
 
-<p align="center">
-  <a href="https://github.com/remotion-dev/logo">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-dark.gif">
-      <img alt="Animated Remotion Logo" src="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-light.gif">
-    </picture>
-  </a>
-</p>
-
-Welcome to your Remotion project!
-
+A poor-man version of TI10 team intro video made using Remotion. Made for fun and practice. Code is messy. Please do not expect it to be tidied 😛
 ## Commands
 
 **Install Dependencies**
 
 ```console
-npm i
+yarn
 ```
 
 **Start Preview**
 
 ```console
-npm start
+yarn start
 ```
 
 **Render video**
 
 ```console
-npm run build
+yarn build
 ```
 
 **Upgrade Remotion**
 
 ```console
-npm run upgrade
+yarn upgrade
 ```
 
 ## Docs
