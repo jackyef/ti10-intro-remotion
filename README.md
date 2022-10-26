@@ -1,6 +1,9 @@
 # Remotion video
 
 A poor-man version of TI10 team intro video made using Remotion. Made for fun and practice. Code is messy. Please do not expect it to be tidied 😛
+
+See rendered output in [./samples/video.mp4](./samples/video.mp4)
+
 ## Commands
 
 **Install Dependencies**
