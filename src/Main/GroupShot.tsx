@@ -7,7 +7,7 @@ import {
 } from 'remotion';
 import {TI_BLUE} from '../constants/colors';
 
-const teamName = 'Pixel eSports';
+const teamName = 'eSports team';
 
 export const GroupShot = () => {
 	const videoConfig = useVideoConfig();
