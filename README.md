@@ -2,7 +2,8 @@
 
 A poor-man version of TI10 team intro video made using Remotion. Made for fun and practice. Code is messy. Please do not expect it to be tidied 😛
 
-See rendered output in [./samples/video.mp4](./samples/video.mp4)
+See example video in [./samples/video.mp4](./samples/video.mp4)
+Note that the example was not actually rendered using Remotion because it was too slow. I played the video preview and did a screen record using OBS as an alternative.
 
 ## Commands
 
